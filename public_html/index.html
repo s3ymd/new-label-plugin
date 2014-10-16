@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="js/libs/jquery-mobile/jquery.mobile-1.4.4.min.css" />
+        <style type="text/css">
+            .label {
+                background-color: yellow;
+                border: 1px solid black;
+                border-radius: 3px;
+                padding: 2px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div data-role="page">
+
+            <div data-role="header">
+                <h1>Page Title</h1>
+            </div><!-- /header -->
+
+            <div role="main" class="ui-content">
+                <p>Page content goes here.</p>
+                <p>Page content goes here.</p>
+                <p>Page content goes here.</p>
+                <p>Page content goes here.</p>
+            </div><!-- /content -->
+
+            <div data-role="footer">
+                <h4>Page Footer</h4>
+            </div><!-- /footer -->
+        </div><!-- /page -->
+
+        <script type="text/javascript" src="js/libs/jquery/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/libs/jquery-mobile/jquery.mobile-1.4.4.min.js"></script>
+
+        <script type="text/javascript">
+            (function ($) {
+                $.fn.label1 = function() {
+                   $(this).prepend("【重要】");
+                };
+                $.fn.label2 = function() {
+                   $(this).prepend("【重要】");
+                   return this;
+                };
+                $.fn.label3 = function(word) {
+                   $(this).prepend("【" + word + "】");
+                   return this;
+                };
+                $.fn.label4 = function(options) {
+                    var settings = $.extend({
+                        word: "重要",
+                        open: "【",
+                        close: "】"
+                    }, options);
+                   $(this).prepend(settings.open 
+                      + settings.word + settings.close);
+                   return this;
+                };
+                $.fn.label5 = function(options) {
+                    var settings = $.extend({
+                        word: "重要",
+                        open: "【",
+                        close: "】"
+                    }, options);
+                    var label = '<span class="label">';
+                    label += (settings.open + settings.word + settings.close);
+                    label += '</span>';
+                   $(this).prepend(label);
+                   return this;
+                };
+            }(jQuery));
+            
+            $(function() {
+                $("p").label5({
+                    word: "警告",
+                    open: "★★★", 
+                    close: "★★★"
+                });
+            });
+            // label1():初期バージョン
+            // label2():メソッドチェーンへの対応: return this
+            // label3():任意のラベル文字列を指定できるようにする
+            // label4():オプション open(開き括弧), close(閉じ括弧), word(表示文言)に対応
+            // label5():CSSクラス「.label」で見た目を変更できるようにする
+        </script>
+    </body>
+</html>
